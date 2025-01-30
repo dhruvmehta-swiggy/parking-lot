@@ -6,7 +6,6 @@ import java.util.Objects;
 
 public class Slot {
     private final int distanceFromEntrance;
-    private boolean isOccupied;
     private Vehicle parkedVehicle;
 
     public Slot(int distanceFromEntrance) {
@@ -15,32 +14,30 @@ public class Slot {
         }
 
         this.distanceFromEntrance = distanceFromEntrance;
-        this.isOccupied = false;
         this.parkedVehicle = null;
+    }
+
+    // Method to return if the slot is occupied
+    public boolean isOccupied() {
+        return parkedVehicle != null;
     }
 
     // Method to park a vehicle in the current slot
     public void park(Vehicle vehicle) {
-        if (isOccupied) {
+        if (parkedVehicle != null) {
             throw new IllegalStateException("Slot is not available");
         }
 
-        isOccupied = true;
         parkedVehicle = vehicle;
     }
 
     // Method to un-park a vehicle from the current slot
     public void unpark() {
-        if (!isOccupied) {
+        if (parkedVehicle == null) {
             throw new IllegalStateException("Slot is already vacant");
         }
 
-        isOccupied = false;
         parkedVehicle = null;
-    }
-
-    public boolean getStatus() {
-        return isOccupied;
     }
 
     @Override
@@ -52,6 +49,6 @@ public class Slot {
             return false;
         }
         Slot slot = (Slot) obj;
-        return distanceFromEntrance == slot.distanceFromEntrance && isOccupied == slot.isOccupied && Objects.equals(parkedVehicle, slot.parkedVehicle);
+        return distanceFromEntrance == slot.distanceFromEntrance && Objects.equals(parkedVehicle, slot.parkedVehicle);
     }
 }

@@ -34,7 +34,7 @@ public class ParkingLot {
     // Method to find the nearest slot
     public Slot findNearestSlot() {
         for (Slot slot : slots) {
-            if (slot.getStatus() == true) {
+            if (slot.isOccupied()) {
                 return slot;
             }
         }
