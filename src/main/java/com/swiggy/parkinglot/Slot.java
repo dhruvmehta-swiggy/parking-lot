@@ -31,6 +31,16 @@ public class Slot {
         parkedVehicle = vehicle;
     }
 
+    // Method to un-park a vehicle from the current slot
+    public void unpark() {
+        if (slotStatus == SlotStatus.VACANT) {
+            throw new IllegalStateException("Slot is already vacant");
+        }
+
+        slotStatus = SlotStatus.VACANT;
+        parkedVehicle = null;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

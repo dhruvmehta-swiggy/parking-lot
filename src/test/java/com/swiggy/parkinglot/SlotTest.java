@@ -47,4 +47,12 @@ public class SlotTest {
             slot.park(car);
         });
     }
+
+    // Test to check un-park method when slot is already vacant
+    @Test
+    public void testUnpark_WhenSlotIsAlreadyVacant_ThrowsIllegalStateException() {
+        Slot slot = new Slot(1);
+
+        assertThrows(IllegalStateException.class, slot::unpark);
+    }
 }
