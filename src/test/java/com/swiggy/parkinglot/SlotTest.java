@@ -1,5 +1,7 @@
 package com.swiggy.parkinglot;
 
+import com.swiggy.parkinglot.vehicle.Vehicle;
+import com.swiggy.parkinglot.vehicle.VehicleType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,5 +34,17 @@ public class SlotTest {
     @Test
     public void testConstructor_WhenDistanceIsNegative_ThrowsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new Slot(-3));
+    }
+
+    // Test to check park method when slot is not vacant
+    @Test
+    public void testPark_WhenSlotIsNotVacant_ThrowsIllegalStateException() {
+        Vehicle car = new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR);
+        Slot slot = new Slot(1);
+
+        assertThrows(IllegalStateException.class, () -> {
+            slot.park(car);
+            slot.park(car);
+        });
     }
 }

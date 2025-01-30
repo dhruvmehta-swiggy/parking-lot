@@ -7,8 +7,8 @@ import java.util.Objects;
 public class Slot {
     private final int distanceFromEntrance;
     private final int floor;
-    private final SlotStatus slotStatus;
-    private final Vehicle parkedVehicle;
+    private SlotStatus slotStatus;
+    private Vehicle parkedVehicle;
 
     public Slot(int distanceFromEntrance) {
         if (distanceFromEntrance <= 0) {
@@ -19,6 +19,16 @@ public class Slot {
         this.floor = 0;
         this.slotStatus = SlotStatus.VACANT;
         this.parkedVehicle = null;
+    }
+
+    // Method to park a vehicle in the current slot
+    public void park(Vehicle vehicle) {
+        if (slotStatus != SlotStatus.VACANT) {
+            throw new IllegalStateException("Slot is not available");
+        }
+
+        slotStatus = SlotStatus.OCCUPIED;
+        parkedVehicle = vehicle;
     }
 
     @Override
