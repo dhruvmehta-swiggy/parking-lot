@@ -62,4 +62,15 @@ public class ParkingLotTest {
         Slot slot = parkingLot.findNearestSlot();
         assertNull(slot);
     }
+
+    // Test to check parkAtNearestSlot method when all slots are full
+    @Test
+    public void testParkAtNearestSlot_WhenAllSlotsFull_ThenIllegalStateException() {
+        ParkingLot parkingLot = new ParkingLot(2);
+
+        parkingLot.findNearestSlot().park(new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR));
+        parkingLot.findNearestSlot().park(new Vehicle("KA-01-HH-1235", "White", VehicleType.CAR));
+
+        assertThrows(IllegalStateException.class, () -> parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1236", "White", VehicleType.CAR)));
+    }
 }
