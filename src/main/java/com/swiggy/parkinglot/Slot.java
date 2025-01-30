@@ -6,8 +6,7 @@ import java.util.Objects;
 
 public class Slot {
     private final int distanceFromEntrance;
-    private final int floor;
-    private SlotStatus slotStatus;
+    private boolean isOccupied;
     private Vehicle parkedVehicle;
 
     public Slot(int distanceFromEntrance) {
@@ -16,34 +15,32 @@ public class Slot {
         }
 
         this.distanceFromEntrance = distanceFromEntrance;
-        this.floor = 0;
-        this.slotStatus = SlotStatus.VACANT;
+        this.isOccupied = false;
         this.parkedVehicle = null;
-    }
-
-    // Method to get the status of the current slot
-    public SlotStatus getStatus() {
-        return slotStatus;
     }
 
     // Method to park a vehicle in the current slot
     public void park(Vehicle vehicle) {
-        if (slotStatus != SlotStatus.VACANT) {
+        if (isOccupied) {
             throw new IllegalStateException("Slot is not available");
         }
 
-        slotStatus = SlotStatus.OCCUPIED;
+        isOccupied = true;
         parkedVehicle = vehicle;
     }
 
     // Method to un-park a vehicle from the current slot
     public void unpark() {
-        if (slotStatus == SlotStatus.VACANT) {
+        if (!isOccupied) {
             throw new IllegalStateException("Slot is already vacant");
         }
 
-        slotStatus = SlotStatus.VACANT;
+        isOccupied = false;
         parkedVehicle = null;
+    }
+
+    public boolean getStatus() {
+        return isOccupied;
     }
 
     @Override
@@ -55,6 +52,6 @@ public class Slot {
             return false;
         }
         Slot slot = (Slot) obj;
-        return distanceFromEntrance == slot.distanceFromEntrance && floor == slot.floor && slotStatus == slot.slotStatus && Objects.equals(parkedVehicle, slot.parkedVehicle);
+        return distanceFromEntrance == slot.distanceFromEntrance && isOccupied == slot.isOccupied && Objects.equals(parkedVehicle, slot.parkedVehicle);
     }
 }
