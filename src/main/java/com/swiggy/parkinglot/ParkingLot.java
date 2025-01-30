@@ -15,6 +15,9 @@ public class ParkingLot {
         }
 
         slots = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            slots.add(new Slot(i + 1));
+        }
     }
 
     @Override
