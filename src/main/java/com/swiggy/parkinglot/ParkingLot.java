@@ -40,16 +40,4 @@ public class ParkingLot {
         }
         return null;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        ParkingLot parkingLot = (ParkingLot) obj;
-        return slots.equals(parkingLot.slots);
-    }
 }
