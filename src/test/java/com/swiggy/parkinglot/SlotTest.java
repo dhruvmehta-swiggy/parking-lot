@@ -24,10 +24,10 @@ public class SlotTest {
         assertNotEquals(slot1, slot2);
     }
 
-    // Test to check constructor when distance is 0
+    // Test to check constructor when distance is -1
     @Test
-    public void testConstructor_WhenDistanceIsZero_ThrowsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Slot(0));
+    public void testConstructor_WhenDistanceMinus1_ThrowsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new Slot(-1));
     }
 
     // Test to check constructor when distance is -3

@@ -11,8 +11,8 @@ public class Slot {
     private Vehicle parkedVehicle;
 
     public Slot(int distanceFromEntrance) {
-        if (distanceFromEntrance <= 0) {
-            throw new IllegalArgumentException("Distance should be greater than 0");
+        if (distanceFromEntrance < 0) {
+            throw new IllegalArgumentException("Distance cannot be negative");
         }
 
         this.distanceFromEntrance = distanceFromEntrance;
