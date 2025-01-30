@@ -1,9 +1,27 @@
 package com.swiggy.parkinglot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingLot {
 
-    private final List<Slot> slot;
+    // List of slots in the parking lot
+    private final List<Slot> slots;
 
+    // Constructor
+    public ParkingLot(int size) {
+        slots = new ArrayList<>(size);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        ParkingLot parkingLot = (ParkingLot) obj;
+        return slots.equals(parkingLot.slots);
+    }
 }
