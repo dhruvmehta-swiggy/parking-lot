@@ -20,6 +20,16 @@ public class ParkingLot {
         }
     }
 
+    // Method to find the nearest slot
+    public Slot findNearestSlot() {
+        for (Slot slot : slots) {
+            if (slot.getStatus() == SlotStatus.VACANT) {
+                return slot;
+            }
+        }
+        return null;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

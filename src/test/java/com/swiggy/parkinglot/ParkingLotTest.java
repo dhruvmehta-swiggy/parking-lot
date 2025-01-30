@@ -1,5 +1,7 @@
 package com.swiggy.parkinglot;
 
+import com.swiggy.parkinglot.vehicle.Vehicle;
+import com.swiggy.parkinglot.vehicle.VehicleType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,5 +40,26 @@ public class ParkingLotTest {
     @Test
     public void testConstructor_WhenInputIsNegative_ThrowIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new ParkingLot(-3));
+    }
+
+    // Test to check findNearestSlot method when all slots are empty
+    @Test
+    public void testFindNearestSlot_WhenAllSlotsEmpty_ThenFirstSlot() {
+        ParkingLot parkingLot = new ParkingLot(5);
+        Slot slot = parkingLot.findNearestSlot();
+
+        assertNotNull(slot);
+    }
+
+    // Test to check findNearestSlot method when all slots are full
+    @Test
+    public void testFindNearestSlot_WhenAllSlotsFull_ThenNull() {
+        ParkingLot parkingLot = new ParkingLot(2);
+
+        parkingLot.findNearestSlot().park(new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR));
+        parkingLot.findNearestSlot().park(new Vehicle("KA-01-HH-1235", "White", VehicleType.CAR));
+
+        Slot slot = parkingLot.findNearestSlot();
+        assertNull(slot);
     }
 }

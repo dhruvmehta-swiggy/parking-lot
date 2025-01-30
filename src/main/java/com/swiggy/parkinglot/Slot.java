@@ -21,6 +21,11 @@ public class Slot {
         this.parkedVehicle = null;
     }
 
+    // Method to get the status of the current slot
+    public SlotStatus getStatus() {
+        return slotStatus;
+    }
+
     // Method to park a vehicle in the current slot
     public void park(Vehicle vehicle) {
         if (slotStatus != SlotStatus.VACANT) {
