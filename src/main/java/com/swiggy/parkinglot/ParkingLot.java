@@ -10,6 +10,10 @@ public class ParkingLot {
 
     // Constructor
     public ParkingLot(int size) {
+        if (size <= 0) {
+            throw new IllegalArgumentException("Size of Parking Lot should be greater than 0");
+        }
+
         slots = new ArrayList<>(size);
     }
 

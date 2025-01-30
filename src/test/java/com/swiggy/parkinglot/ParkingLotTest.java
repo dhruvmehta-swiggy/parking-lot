@@ -20,4 +20,23 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot(6);
         assertNotEquals(null, parkingLot);
     }
+
+    // Test to check constructor when input is 5
+    @Test
+    public void testConstructor_WhenInputIs5_ThenSizeIs5() {
+        ParkingLot parkingLot = new ParkingLot(5);
+        assertNotNull(parkingLot);
+    }
+
+    // Test to check constructor when input is 0
+    @Test
+    public void testConstructor_WhenInputIs0_ThrowIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new ParkingLot(0));
+    }
+
+    // Test to check constructor when input is -3
+    @Test
+    public void testConstructor_WhenInputIsNegative_ThrowIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new ParkingLot(-3));
+    }
 }
