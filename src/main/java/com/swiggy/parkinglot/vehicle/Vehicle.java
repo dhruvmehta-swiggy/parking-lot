@@ -8,6 +8,14 @@ public class Vehicle {
 
     // Constructor
     public Vehicle(String registrationNumber, String color, VehicleType vehicleType) {
+        if (registrationNumber == null || registrationNumber.isEmpty()) {
+            throw new IllegalArgumentException("Registration number cannot be null or empty");
+        }
+
+        if (color == null || color.isEmpty()) {
+            throw new IllegalArgumentException("Color cannot be null or empty");
+        }
+
         this.registrationNumber = registrationNumber;
         this.color = color;
         this.vehicleType = vehicleType;
