@@ -4,6 +4,9 @@ import com.swiggy.parkinglot.vehicle.Vehicle;
 import com.swiggy.parkinglot.vehicle.VehicleType;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SlotTest {
@@ -54,5 +57,39 @@ public class SlotTest {
         Slot slot = new Slot(1);
 
         assertThrows(IllegalStateException.class, slot::unpark);
+    }
+
+    // Test to check findNearestSlot method when slots is null
+    @Test
+    public void testFindNearestSlot_WhenAllSlotsNull_ThrowsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> Slot.findNearestSlot(null));
+    }
+
+    // Test to check findNearestSlot method when all slots are vacant
+    @Test
+    public void testFindNearestSlot_WhenAllSlotsVacant_ThenFirstSlot() {
+        Slot slot1 = new Slot(1);
+        Slot slot2 = new Slot(2);
+
+        Map<Slot, Vehicle> slots = new HashMap<>();
+        slots.put(slot1, null);
+        slots.put(slot2, null);
+
+        Slot expected = Slot.findNearestSlot(slots);
+        assertEquals(slot1, expected);
+    }
+
+    // Test to check findNearestSlot method when all slots are full
+    @Test
+    public void testFindNearestSlot_WhenAllSlotsFull_ThenNull() {
+        Slot slot1 = new Slot(1);
+        Slot slot2 = new Slot(2);
+
+        Map<Slot, Vehicle> slots = new HashMap<>();
+        slots.put(slot1, new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR));
+        slots.put(slot2, new Vehicle("KA-01-HH-1235", "White", VehicleType.CAR));
+
+        Slot expected = Slot.findNearestSlot(slots);
+        assertNull(expected);
     }
 }
