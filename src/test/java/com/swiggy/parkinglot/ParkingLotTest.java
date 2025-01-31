@@ -48,12 +48,23 @@ public class ParkingLotTest {
 
     // Test to check unpark method when vehicle is not found
     @Test
-    public void testUnpark_Vehicle_WhenVehicleNotFound_ThenIllegalStateException() {
+    public void testUnpark_Vehicle_WhenRegistrationNumberNotFound_ThenIllegalStateException() {
         ParkingLot parkingLot = new ParkingLot(2);
 
         parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR));
         parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1235", "White", VehicleType.CAR));
 
         assertThrows(IllegalStateException.class, () -> parkingLot.unpark_Vehicle(new Vehicle("KA-01-HH-1236", "White", VehicleType.CAR)));
+    }
+
+    // Test to check unpark method when registration number is not found
+    @Test
+    public void testUnpark_RegistrationNumber_WhenRegistrationNumberNotFound_ThenIllegalStateException() {
+        ParkingLot parkingLot = new ParkingLot(2);
+
+        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR));
+        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1235", "White", VehicleType.CAR));
+
+        assertThrows(IllegalStateException.class, () -> parkingLot.unpark_RegistrationNumber("KA-01-HH-1236"));
     }
 }

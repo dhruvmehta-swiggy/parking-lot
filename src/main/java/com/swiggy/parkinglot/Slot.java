@@ -47,6 +47,16 @@ public class Slot {
         return null;
     }
 
+    public static Slot getVehicleByRegistrationNumber(List<Slot> slots, String registrationNumber) {
+        for (Slot slot : slots) {
+            if (slot.parkedVehicle != null && slot.parkedVehicle.hasSameRegistrationNumber(registrationNumber)) {
+                return slot;
+            }
+        }
+
+        return null;
+    }
+
     // Method to park a vehicle in the current slot
     public void park(Vehicle vehicle) {
         if (parkedVehicle != null) {
