@@ -87,4 +87,32 @@ public class VehicleTest {
         Vehicle car = new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR);
         assertFalse(car.hasSameRegistrationNumber("KA-01-HH-1000"));
     }
+
+    // Test to check hasSameColor method when null color is passed
+    @Test
+    public void testHasSameColor_WhenNullColor_ThenFalse() {
+        Vehicle car = new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR);
+        assertFalse(car.hasSameColor(null));
+    }
+
+    // Test to check hasSameColor method when empty color is passed
+    @Test
+    public void testHasSameColor_WhenEmptyColor_ThenFalse() {
+        Vehicle car = new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR);
+        assertFalse(car.hasSameColor(""));
+    }
+
+    // Test to check hasSameColor method when same color is passed
+    @Test
+    public void testHasSameColor_WhenSameColor_ThenTrue() {
+        Vehicle car = new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR);
+        assertTrue(car.hasSameColor("White"));
+    }
+
+    // Test to check hasSameColor method when different color is passed
+    @Test
+    public void testHasSameColor_WhenDifferentColor_ThenFalse() {
+        Vehicle car = new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR);
+        assertFalse(car.hasSameColor("Black"));
+    }
 }

@@ -30,6 +30,16 @@ public class Vehicle {
         return this.registrationNumber.equals(registrationNumber);
     }
 
+    // Method to check if the color is same
+    public boolean hasSameColor(String color) {
+        if (color == null || color.isEmpty()) {
+            return false;
+        }
+
+        return this.color.equals(color);
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
