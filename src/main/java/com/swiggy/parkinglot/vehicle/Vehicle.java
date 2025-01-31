@@ -21,6 +21,15 @@ public class Vehicle {
         this.vehicleType = vehicleType;
     }
 
+    // Method to check if the registration number is same
+    public boolean hasSameRegistrationNumber(String registrationNumber) {
+        if (registrationNumber == null || registrationNumber.isEmpty()) {
+            return false;
+        }
+
+        return this.registrationNumber.equals(registrationNumber);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

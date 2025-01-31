@@ -59,4 +59,32 @@ public class VehicleTest {
     public void testConstructor_WhenEmptyColor_ThrowIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new Vehicle("KA-01-HH-1234", "", VehicleType.CAR));
     }
+
+    // Test to check hasSameRegistrationNumber method when null registration number is passed
+    @Test
+    public void testHasSameRegistrationNumber_WhenNullRegistrationNumber_ThenFalse() {
+        Vehicle car = new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR);
+        assertFalse(car.hasSameRegistrationNumber(null));
+    }
+
+    // Test to check hasSameRegistrationNumber method when empty registration number is passed
+    @Test
+    public void testHasSameRegistrationNumber_WhenEmptyRegistrationNumber_ThenFalse() {
+        Vehicle car = new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR);
+        assertFalse(car.hasSameRegistrationNumber(""));
+    }
+
+    // Test to check hasSameRegistrationNumber method when same registration number is passed
+    @Test
+    public void testHasSameRegistrationNumber_WhenSameRegistrationNumber_ThenTrue() {
+        Vehicle car = new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR);
+        assertTrue(car.hasSameRegistrationNumber("KA-01-HH-1234"));
+    }
+
+    // Test to check hasSameRegistrationNumber method when different registration number is passed
+    @Test
+    public void testHasSameRegistrationNumber_WhenDifferentRegistrationNumber_ThenFalse() {
+        Vehicle car = new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR);
+        assertFalse(car.hasSameRegistrationNumber("KA-01-HH-1000"));
+    }
 }
