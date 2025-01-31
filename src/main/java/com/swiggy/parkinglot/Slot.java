@@ -2,7 +2,7 @@ package com.swiggy.parkinglot;
 
 import com.swiggy.parkinglot.vehicle.Vehicle;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Objects;
 
 public class Slot {
@@ -19,13 +19,13 @@ public class Slot {
     }
 
     // Method to find the nearest slot from the entrance
-    public static Slot findNearestSlot(Map<Slot, Vehicle> slots) {
+    public static Slot findNearestSlot(List<Slot> slots) {
         if (slots == null || slots.isEmpty()) {
             throw new IllegalArgumentException("Slots cannot be null or empty");
         }
 
         Slot nearestSlot = null;
-        for (Slot slot : slots.keySet()) {
+        for (Slot slot : slots) {
             if (slot.parkedVehicle == null) {
                 synchronized (Slot.class) {
                     if (nearestSlot == null || slot.distanceFromEntrance < nearestSlot.distanceFromEntrance) {
@@ -39,8 +39,8 @@ public class Slot {
     }
 
     // Method to get the slot where the vehicle is parked
-    public static Slot getVehicleSlot(Map<Slot, Vehicle> slots, Vehicle vehicle) {
-        for (Slot slot : slots.keySet()) {
+    public static Slot getVehicleSlot(List<Slot> slots, Vehicle vehicle) {
+        for (Slot slot : slots) {
             if (slot.parkedVehicle != null && slot.parkedVehicle.equals(vehicle)) {
                 return slot;
             }
