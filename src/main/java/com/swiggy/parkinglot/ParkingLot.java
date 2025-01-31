@@ -37,7 +37,7 @@ public class ParkingLot {
     }
 
     // Method to un-park the vehicle from the slot
-    public void unpark(Vehicle vehicle) {
+    public void unpark_Vehicle(Vehicle vehicle) {
         Slot vehicleSlot = Slot.getVehicleSlot(this.slots, vehicle);
 
         if (vehicleSlot == null) {
