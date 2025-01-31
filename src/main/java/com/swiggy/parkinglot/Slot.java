@@ -27,10 +27,8 @@ public class Slot {
         Slot nearestSlot = null;
         for (Slot slot : slots) {
             if (slot.parkedVehicle == null) {
-                synchronized (Slot.class) {
-                    if (nearestSlot == null || slot.distanceFromEntrance < nearestSlot.distanceFromEntrance) {
-                        nearestSlot = slot;
-                    }
+                if (nearestSlot == null || slot.distanceFromEntrance < nearestSlot.distanceFromEntrance) {
+                    nearestSlot = slot;
                 }
             }
         }
