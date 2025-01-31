@@ -24,20 +24,13 @@ public class ParkingLot {
 
     // Method to park the vehicle at the nearest slot
     public void parkAtNearestSlot(Vehicle vehicle) {
-        Slot slot = findNearestSlot();
-        if (slot == null) {
-            throw new IllegalStateException("Parking Lot is full");
-        }
-        slot.park(vehicle);
-    }
-
-    // Method to find the nearest slot
-    public Slot findNearestSlot() {
         for (Slot slot : slots) {
             if (!slot.isOccupied()) {
-                return slot;
+                slot.park(vehicle);
+                return;
             }
         }
-        return null;
+
+        throw new IllegalStateException("Parking Lot is full");
     }
 }
