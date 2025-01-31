@@ -1,6 +1,7 @@
 package com.swiggy.parkinglot;
 
 import com.swiggy.parkinglot.vehicle.Vehicle;
+import com.swiggy.parkinglot.vehicle.VehicleColor;
 
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +17,24 @@ public class Slot {
 
         this.distanceFromEntrance = distanceFromEntrance;
         this.parkedVehicle = null;
+    }
+
+    // Method to park a vehicle in the current slot
+    public void park(Vehicle vehicle) {
+        if (parkedVehicle != null) {
+            throw new IllegalStateException("Slot is already occupied");
+        }
+
+        parkedVehicle = vehicle;
+    }
+
+    // Method to un-park a vehicle from the current slot
+    public void unpark() {
+        if (parkedVehicle == null) {
+            throw new IllegalStateException("Slot is already vacant");
+        }
+
+        parkedVehicle = null;
     }
 
     // Method to find the nearest slot from the entrance
@@ -36,17 +55,6 @@ public class Slot {
         return nearestSlot;
     }
 
-    // Method to get the slot where the vehicle is parked
-    public static Slot getVehicleSlot(List<Slot> slots, Vehicle vehicle) {
-        for (Slot slot : slots) {
-            if (slot.parkedVehicle != null && slot.parkedVehicle.equals(vehicle)) {
-                return slot;
-            }
-        }
-
-        return null;
-    }
-
     public static Slot getVehicleByRegistrationNumber(List<Slot> slots, String registrationNumber) {
         for (Slot slot : slots) {
             if (slot.parkedVehicle != null && slot.parkedVehicle.hasSameRegistrationNumber(registrationNumber)) {
@@ -57,22 +65,20 @@ public class Slot {
         return null;
     }
 
-    // Method to park a vehicle in the current slot
-    public void park(Vehicle vehicle) {
-        if (parkedVehicle != null) {
-            throw new IllegalStateException("Slot is already occupied");
+    // Method to get number of cars with given color
+    public static int fetchNumberOfCarsWithColor(List<Slot> slots, VehicleColor color) {
+        if (slots == null || slots.isEmpty()) {
+            throw new IllegalArgumentException("Slots cannot be null or empty");
         }
 
-        parkedVehicle = vehicle;
-    }
-
-    // Method to un-park a vehicle from the current slot
-    public void unpark() {
-        if (parkedVehicle == null) {
-            throw new IllegalStateException("Slot is already vacant");
+        int count = 0;
+        for (Slot slot : slots) {
+            if (slot.parkedVehicle != null && slot.parkedVehicle.hasSameColor(color)) {
+                count++;
+            }
         }
 
-        parkedVehicle = null;
+        return count;
     }
 
     @Override

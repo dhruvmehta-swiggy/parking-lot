@@ -97,4 +97,46 @@ public class SlotTest {
         Slot expected = Slot.findNearestSlot(slots);
         assertNull(expected);
     }
+
+    // Test to check fetchNumberOfCarsWithColor method when slots is null
+    @Test
+    public void testFetchNumberOfCarsWithColor_WhenAllSlotsNull_ThrowsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> Slot.fetchNumberOfCarsWithColor(null, VehicleColor.WHITE));
+    }
+
+    // Test to check fetchNumberOfCarsWithColor method when no black car is present
+    @Test
+    public void testFetchNumberOfCarsWithColor_WhenAllSlotsVacant_ThenZero() {
+        List<Slot> slots = new ArrayList<>();
+        Slot slot1 = new Slot(1);
+        Slot slot2 = new Slot(2);
+        Vehicle car1 = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
+        Vehicle car2 = new Vehicle("KA-01-HH-1235", VehicleColor.BLUE, VehicleType.CAR);
+
+        slot1.park(car1);
+        slot2.park(car2);
+        slots.add(slot1);
+        slots.add(slot2);
+
+        int expected = Slot.fetchNumberOfCarsWithColor(slots, VehicleColor.BLACK);
+        assertEquals(0, expected);
+    }
+
+    // Test to check fetchNumberOfCarsWithColor method when two slots have white cars
+    @Test
+    public void testFetchNumberOfCarsWithColor_WhenTwoWhiteCars_ThenTwo() {
+        List<Slot> slots = new ArrayList<>();
+        Slot slot1 = new Slot(1);
+        Slot slot2 = new Slot(2);
+        Vehicle car1 = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
+        Vehicle car2 = new Vehicle("KA-01-HH-1235", VehicleColor.WHITE, VehicleType.CAR);
+
+        slot1.park(car1);
+        slot2.park(car2);
+        slots.add(slot1);
+        slots.add(slot2);
+
+        int expected = Slot.fetchNumberOfCarsWithColor(slots, VehicleColor.WHITE);
+        assertEquals(2, expected);
+    }
 }
