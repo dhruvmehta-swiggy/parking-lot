@@ -36,17 +36,6 @@ public class ParkingLot {
         nearestSlot.park(vehicle);
     }
 
-    // Method to un-park the vehicle from the slot
-    public void unpark_Vehicle(Vehicle vehicle) {
-        Slot vehicleSlot = Slot.getVehicleSlot(this.slots, vehicle);
-
-        if (vehicleSlot == null) {
-            throw new IllegalStateException("Vehicle not found in Parking Lot");
-        }
-
-        vehicleSlot.unpark();
-    }
-
     // Method to unpark the vehicle by registration number
     public void unpark_RegistrationNumber(String registrationNumber) {
         Slot vehicleSlot = Slot.getVehicleByRegistrationNumber(this.slots, registrationNumber);
