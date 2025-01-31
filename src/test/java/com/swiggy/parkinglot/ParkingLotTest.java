@@ -57,4 +57,47 @@ public class ParkingLotTest {
 
         assertThrows(IllegalStateException.class, () -> parkingLot.unpark_RegistrationNumber("KA-01-HH-1236"));
     }
+
+    // Test to check unpark method when registration number is found
+    @Test
+    public void testUnpark_RegistrationNumber_WhenRegistrationNumberFound_ThenVehicleUnparked() {
+        ParkingLot parkingLot = new ParkingLot(2);
+
+        Vehicle vehicle1 = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
+        Vehicle vehicle2 = new Vehicle("KA-01-HH-1235", VehicleColor.WHITE, VehicleType.CAR);
+
+        parkingLot.parkAtNearestSlot(vehicle1);
+        parkingLot.parkAtNearestSlot(vehicle2);
+
+        // Unpark the vehicle once
+        parkingLot.unpark_RegistrationNumber("KA-01-HH-1234");
+
+        // Unpark the same vehicle again
+        assertThrows(IllegalStateException.class, () -> parkingLot.unpark_RegistrationNumber("KA-01-HH-1234"));
+    }
+
+    // Test to check fetchNumberOfCarsWithColor method when no white cars are parked
+    @Test
+    public void testFetchNumberOfCarsWithColor_WhenNoWhiteCars_ThenZero() {
+        ParkingLot parkingLot = new ParkingLot(2);
+        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1234", VehicleColor.BLACK, VehicleType.CAR));
+        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1235", VehicleColor.BROWN, VehicleType.CAR));
+
+        int expected = parkingLot.fetchNumberOfCarsWithColor(VehicleColor.WHITE);
+
+        assertEquals(0, expected);
+    }
+
+    // Test to check fetchNumberOfCarsWithColor method when two white cars are parked
+    @Test
+    public void testFetchNumberOfCarsWithColor_WhenTwoWhiteCars_ThenTwo() {
+        ParkingLot parkingLot = new ParkingLot(3);
+        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR));
+        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1235", VehicleColor.WHITE, VehicleType.CAR));
+        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1236", VehicleColor.BLACK, VehicleType.CAR));
+
+        int expected = parkingLot.fetchNumberOfCarsWithColor(VehicleColor.WHITE);
+
+        assertEquals(2, expected);
+    }
 }

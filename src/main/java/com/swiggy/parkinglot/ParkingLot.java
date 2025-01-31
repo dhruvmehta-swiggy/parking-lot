@@ -1,6 +1,7 @@
 package com.swiggy.parkinglot;
 
 import com.swiggy.parkinglot.vehicle.Vehicle;
+import com.swiggy.parkinglot.vehicle.VehicleColor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,5 +46,10 @@ public class ParkingLot {
         }
 
         vehicleSlot.unpark();
+    }
+
+    // Method to fetch number of cars with given color
+    public int fetchNumberOfCarsWithColor(VehicleColor color) {
+        return Slot.fetchNumberOfCarsWithColor(this.slots, color);
     }
 }
