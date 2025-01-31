@@ -25,12 +25,12 @@ public class Slot {
         }
 
         Slot nearestSlot = null;
-        for (Map.Entry<Slot, Vehicle> entry : slots.entrySet()) {
-            Slot slot = entry.getKey();
-            Vehicle vehicle = entry.getValue();
-            if (vehicle == null) {
-                if (nearestSlot == null || slot.distanceFromEntrance < nearestSlot.distanceFromEntrance) {
-                    nearestSlot = slot;
+        for (Slot slot : slots.keySet()) {
+            if (slot.parkedVehicle == null) {
+                synchronized (Slot.class) {
+                    if (nearestSlot == null || slot.distanceFromEntrance < nearestSlot.distanceFromEntrance) {
+                        nearestSlot = slot;
+                    }
                 }
             }
         }

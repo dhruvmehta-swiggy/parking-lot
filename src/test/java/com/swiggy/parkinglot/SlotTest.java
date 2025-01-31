@@ -68,12 +68,13 @@ public class SlotTest {
     // Test to check findNearestSlot method when all slots are vacant
     @Test
     public void testFindNearestSlot_WhenAllSlotsVacant_ThenFirstSlot() {
+        Map<Slot, Vehicle> slots = new HashMap<>();
         Slot slot1 = new Slot(1);
         Slot slot2 = new Slot(2);
+        Vehicle car = new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR);
 
-        Map<Slot, Vehicle> slots = new HashMap<>();
         slots.put(slot1, null);
-        slots.put(slot2, null);
+        slots.put(slot2, car);
 
         Slot expected = Slot.findNearestSlot(slots);
         assertEquals(slot1, expected);
@@ -82,12 +83,16 @@ public class SlotTest {
     // Test to check findNearestSlot method when all slots are full
     @Test
     public void testFindNearestSlot_WhenAllSlotsFull_ThenNull() {
+        Map<Slot, Vehicle> slots = new HashMap<>();
         Slot slot1 = new Slot(1);
         Slot slot2 = new Slot(2);
+        Vehicle car1 = new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR);
+        Vehicle car2 = new Vehicle("KA-01-HH-1235", "White", VehicleType.CAR);
 
-        Map<Slot, Vehicle> slots = new HashMap<>();
-        slots.put(slot1, new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR));
-        slots.put(slot2, new Vehicle("KA-01-HH-1235", "White", VehicleType.CAR));
+        slot1.park(car1);
+        slot2.park(car2);
+        slots.put(slot1, car1);
+        slots.put(slot2, car2);
 
         Slot expected = Slot.findNearestSlot(slots);
         assertNull(expected);
