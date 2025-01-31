@@ -3,17 +3,17 @@ package com.swiggy.parkinglot.vehicle;
 public class Vehicle {
 
     private final String registrationNumber;
-    private final String color;
+    private final VehicleColor color;
     private final VehicleType vehicleType;
 
     // Constructor
-    public Vehicle(String registrationNumber, String color, VehicleType vehicleType) {
+    public Vehicle(String registrationNumber, VehicleColor color, VehicleType vehicleType) {
         if (registrationNumber == null || registrationNumber.isEmpty()) {
             throw new IllegalArgumentException("Registration number cannot be null or empty");
         }
 
-        if (color == null || color.isEmpty()) {
-            throw new IllegalArgumentException("Color cannot be null or empty");
+        if (color == null) {
+            throw new IllegalArgumentException("Color cannot be null");
         }
 
         this.registrationNumber = registrationNumber;
@@ -31,8 +31,8 @@ public class Vehicle {
     }
 
     // Method to check if the color is same
-    public boolean hasSameColor(String color) {
-        if (color == null || color.isEmpty()) {
+    public boolean hasSameColor(VehicleColor color) {
+        if (color == null) {
             return false;
         }
 

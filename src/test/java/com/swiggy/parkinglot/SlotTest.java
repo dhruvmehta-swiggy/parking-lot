@@ -1,6 +1,7 @@
 package com.swiggy.parkinglot;
 
 import com.swiggy.parkinglot.vehicle.Vehicle;
+import com.swiggy.parkinglot.vehicle.VehicleColor;
 import com.swiggy.parkinglot.vehicle.VehicleType;
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +43,7 @@ public class SlotTest {
     // Test to check park method when slot is not vacant
     @Test
     public void testPark_WhenSlotIsNotVacant_ThrowsIllegalStateException() {
-        Vehicle car = new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR);
+        Vehicle car = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
         Slot slot = new Slot(1);
 
         assertThrows(IllegalStateException.class, () -> {
@@ -85,8 +86,8 @@ public class SlotTest {
         List<Slot> slots = new ArrayList<>();
         Slot slot1 = new Slot(1);
         Slot slot2 = new Slot(2);
-        Vehicle car1 = new Vehicle("KA-01-HH-1234", "White", VehicleType.CAR);
-        Vehicle car2 = new Vehicle("KA-01-HH-1235", "White", VehicleType.CAR);
+        Vehicle car1 = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
+        Vehicle car2 = new Vehicle("KA-01-HH-1235", VehicleColor.WHITE, VehicleType.CAR);
 
         slot1.park(car1);
         slot2.park(car2);
