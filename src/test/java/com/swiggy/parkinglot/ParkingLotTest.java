@@ -3,9 +3,13 @@ package com.swiggy.parkinglot;
 import com.swiggy.parkinglot.vehicle.Vehicle;
 import com.swiggy.parkinglot.vehicle.VehicleColor;
 import com.swiggy.parkinglot.vehicle.VehicleType;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ParkingLotTest {
 
@@ -34,6 +38,20 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot(2);
 
         assertThrows(IllegalArgumentException.class, () -> parkingLot.parkAtNearestSlot(null));
+    }
+
+    // Test to check parkAtNearestSlot method when all slots are empty
+    @Test
+    public void testParkAtNearestSlot_WhenAllSlotsEmpty_ThenVehicleParked() {
+        ParkingLot parkingLot = new ParkingLot(3);
+        Vehicle mockVehicle = mock(Vehicle.class);
+        when(mockVehicle.hasSameRegistrationNumber("ABC123")).thenReturn(true);
+        when(mockVehicle.hasSameColor(VehicleColor.RED)).thenReturn(true);
+
+        // Park the mock vehicle
+        parkingLot.parkAtNearestSlot(mockVehicle);
+
+        assertEquals(1, parkingLot.fetchNumberOfCarsWithColor(VehicleColor.RED));
     }
 
     // Test to check parkAtNearestSlot method when all slots are full
