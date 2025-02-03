@@ -55,7 +55,12 @@ public class Slot {
         return nearestSlot;
     }
 
-    public static Slot getVehicleByRegistrationNumber(List<Slot> slots, String registrationNumber) {
+    // Method to get the slot where the vehicle is parked by registration number
+    public static Slot getSlotByRegistrationNumber(List<Slot> slots, String registrationNumber) {
+        if (registrationNumber == null || registrationNumber.isEmpty()) {
+            throw new IllegalArgumentException("Registration Number cannot be null or empty");
+        }
+
         for (Slot slot : slots) {
             if (slot.parkedVehicle != null && slot.parkedVehicle.hasSameRegistrationNumber(registrationNumber)) {
                 return slot;
