@@ -41,4 +41,10 @@ public class UtilTest {
     public void testValidateParkingLot_WhenParkingLotIsNull_ThrowIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> Util.validateParkingLot(null));
     }
+
+    // Test to check validateTicket method when ticket is null
+    @Test
+    public void testValidateTicket_WhenTicketIsNull_ThrowIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> Util.validateTicket(null));
+    }
 }

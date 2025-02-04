@@ -39,4 +39,11 @@ public class Util {
             throw new IllegalArgumentException("Parking Lot cannot be null");
         }
     }
+
+    // Method to validate the ticket
+    public static void validateTicket(Ticket ticket) {
+        if (ticket == null) {
+            throw new IllegalArgumentException("Ticket cannot be null");
+        }
+    }
 }
