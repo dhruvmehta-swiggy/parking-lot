@@ -12,9 +12,10 @@ public class TicketTest {
     // Test to check if the ticket is created successfully
     @Test
     public void testConstructor_WhenValidSlotAndRegistrationNumber_ThenTicketCreated() {
+        ParkingLot parkingLot = new ParkingLot(1);
         Slot slot = new Slot();
         Vehicle vehicle = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
-        Ticket ticket = new Ticket(slot, vehicle);
+        Ticket ticket = new Ticket(parkingLot, slot, vehicle);
         assertNotNull(ticket);
     }
 

@@ -29,7 +29,7 @@ public class ParkingLot {
         Slot nearestSlot = slots.get(location);
         Util.validateSlot(nearestSlot);
 
-        return new Ticket(nearestSlot, vehicle);
+        return new Ticket(this, nearestSlot, vehicle);
     }
 
     // Method to park the vehicle at the nearest slot
