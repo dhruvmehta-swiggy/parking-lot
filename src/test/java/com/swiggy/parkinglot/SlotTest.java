@@ -30,33 +30,33 @@ public class SlotTest {
 
     // Test to check isVehicleWithRegistrationNumber method when vehicle is not parked
     @Test
-    public void testIsVehicleWithRegistrationNumber_WhenVehicleNotParked_ThenFalse() {
+    public void testCompareVehicleWithRegistrationNumber_WhenParkedVehicleNotParked_ThenFalse() {
         Slot slot = new Slot();
 
         String registrationNumber = "KA-01-HH-1234";
-        assertFalse(slot.isVehicleWithRegistrationNumber(registrationNumber));
+        assertFalse(slot.compareParkedVehicle(registrationNumber));
     }
 
     // Test to check isVehicleWithRegistrationNumber method when registration number is same
     @Test
-    public void testIsVehicleWithRegistrationNumber_WhenSameRegistrationNumber_ThenTrue() {
+    public void testCompareParkedVehicle_WhenSameRegistrationNumber_ThenTrue() {
         Vehicle car = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
         Slot slot = new Slot();
         slot.park(car);
 
         String expectedRegistrationNumber = "KA-01-HH-1234";
-        assertTrue(slot.isVehicleWithRegistrationNumber(expectedRegistrationNumber));
+        assertTrue(slot.compareParkedVehicle(expectedRegistrationNumber));
     }
 
     // Test to check isVehicleWithRegistrationNumber method when registration number is different
     @Test
-    public void testIsVehicleWithRegistrationNumber_WhenDifferentRegistrationNumber_ThenFalse() {
+    public void testCompareParkedVehicle_WhenDifferentRegistrationNumber_ThenFalse() {
         Vehicle car = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
         Slot slot = new Slot();
         slot.park(car);
 
         String expectedRegistrationNumber = "KA-01-HH-1235";
-        assertFalse(slot.isVehicleWithRegistrationNumber(expectedRegistrationNumber));
+        assertFalse(slot.compareParkedVehicle(expectedRegistrationNumber));
     }
 
     // Test to check equals method when different objects with same values are compared
@@ -73,33 +73,33 @@ public class SlotTest {
 
     // Test to check isVehicleWithColor method when vehicle is not parked
     @Test
-    public void testIsVehicleWithColor_WhenVehicleNotParked_ThenFalse() {
+    public void testCompareVehicleWithColor_WhenParkedVehicleNotParked_ThenFalse() {
         Slot slot = new Slot();
 
         VehicleColor expectedColor = VehicleColor.WHITE;
-        assertFalse(slot.isVehicleWithColor(expectedColor));
+        assertFalse(slot.compareParkedVehicle(expectedColor));
     }
 
     // Test to check isVehicleWithColor method when color is same
     @Test
-    public void testIsVehicleWithColor_WhenSameColor_ThenTrue() {
+    public void testCompareParkedVehicle_WhenSameColor_ThenTrue() {
         Vehicle car = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
         Slot slot = new Slot();
         slot.park(car);
 
         VehicleColor expectedColor = VehicleColor.WHITE;
-        assertTrue(slot.isVehicleWithColor(expectedColor));
+        assertTrue(slot.compareParkedVehicle(expectedColor));
     }
 
     // Test to check isVehicleWithColor method when color is different
     @Test
-    public void testIsVehicleWithColor_WhenDifferentColor_ThenFalse() {
+    public void testCompareParkedVehicle_WhenDifferentColor_ThenFalse() {
         Vehicle car = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
         Slot slot = new Slot();
         slot.park(car);
 
         VehicleColor expectedColor = VehicleColor.BLACK;
-        assertFalse(slot.isVehicleWithColor(expectedColor));
+        assertFalse(slot.compareParkedVehicle(expectedColor));
     }
 
     // Test to check equals method when different objects are compared

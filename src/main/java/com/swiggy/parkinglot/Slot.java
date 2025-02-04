@@ -36,7 +36,7 @@ public class Slot {
     }
 
     // Method to compare the registration number of the parked vehicle
-    public boolean isVehicleWithRegistrationNumber(String registrationNumber) {
+    public boolean compareParkedVehicle(String registrationNumber) {
         if (parkedVehicle == null) {
             return false;
         }
@@ -46,8 +46,8 @@ public class Slot {
         return parkedVehicle.hasSameRegistrationNumber(registrationNumber);
     }
 
-    // Method to get the parked vehicle
-    public boolean isVehicleWithColor(VehicleColor color) {
+    // Method to compare the color of the  parked vehicle
+    public boolean compareParkedVehicle(VehicleColor color) {
         if (parkedVehicle == null) {
             return false;
         }

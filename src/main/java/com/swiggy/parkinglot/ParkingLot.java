@@ -66,7 +66,7 @@ public class ParkingLot {
         Util.validateRegistrationNumber(registrationNumber);
 
         for (Slot slot : slots) {
-            if (slot.isOccupied() && slot.isVehicleWithRegistrationNumber(registrationNumber)) {
+            if (slot.isOccupied() && slot.compareParkedVehicle(registrationNumber)) {
                 return slot;
             }
         }
@@ -78,7 +78,7 @@ public class ParkingLot {
     public int countVehiclesWithColour(VehicleColor color) {
         int count = 0;
         for (Slot slot : slots) {
-            if (slot.isOccupied() && slot.isVehicleWithColor(color)) {
+            if (slot.isOccupied() && slot.compareParkedVehicle(color)) {
                 count++;
             }
         }
