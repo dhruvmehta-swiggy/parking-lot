@@ -1,7 +1,6 @@
 package com.swiggy.parkinglot;
 
 import com.swiggy.parkinglot.vehicle.Vehicle;
-import com.swiggy.parkinglot.vehicle.VehicleColor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,7 @@ public class ParkingLot {
 
         slots = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
-            slots.add(new Slot(i));
+            slots.add(new Slot());
         }
     }
 
@@ -29,7 +28,7 @@ public class ParkingLot {
             throw new IllegalArgumentException("Vehicle cannot be null");
         }
 
-        Slot nearestSlot = Slot.findNearestSlot(this.slots);
+        Slot nearestSlot = findNearestSlot();
         if (nearestSlot == null) {
             throw new IllegalStateException("Parking Lot is full");
         }
@@ -37,9 +36,22 @@ public class ParkingLot {
         nearestSlot.park(vehicle);
     }
 
+    // Method to find the nearest slot from the entrance
+    private Slot findNearestSlot() {
+        for (Slot slot : slots) {
+            if (!slot.isOccupied()) {
+                return slot;
+            }
+        }
+
+        return null;
+    }
+
     // Method to unpark the vehicle by registration number
-    public void unpark_RegistrationNumber(String registrationNumber) {
-        Slot vehicleSlot = Slot.fetchSlotByRegistrationNumber(this.slots, registrationNumber);
+    public void unpark(String registrationNumber) {
+        Util.validateRegistrationNumber(registrationNumber);
+
+        Slot vehicleSlot = fetchSlotByRegistrationNumber(registrationNumber);
 
         if (vehicleSlot == null) {
             throw new IllegalStateException("Vehicle not found in Parking Lot");
@@ -48,8 +60,16 @@ public class ParkingLot {
         vehicleSlot.unpark();
     }
 
-    // Method to fetch number of cars with given color
-    public int fetchNumberOfCarsWithColor(VehicleColor color) {
-        return Slot.fetchNumberOfCarsWithColor(this.slots, color);
+    // Method to fetch the slot where the vehicle is parked by registration number
+    private Slot fetchSlotByRegistrationNumber(String registrationNumber) {
+        Util.validateRegistrationNumber(registrationNumber);
+
+        for (Slot slot : slots) {
+            if (slot.isOccupied() && slot.isVehicleWithRegistrationNumber(registrationNumber)) {
+                return slot;
+            }
+        }
+
+        return null;
     }
 }

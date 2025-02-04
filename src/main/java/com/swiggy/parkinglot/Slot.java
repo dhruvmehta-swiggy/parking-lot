@@ -27,9 +27,18 @@ public class Slot {
 
         parkedVehicle = null;
     }
-
+    
+    // Method to get the parked vehicle
     public boolean isOccupied() {
         return parkedVehicle != null;
+    }
+
+    public boolean isVehicleWithRegistrationNumber(String registrationNumber) {
+        if (registrationNumber == null || registrationNumber.isEmpty()) {
+            return false;
+        }
+
+        return parkedVehicle.hasSameRegistrationNumber(registrationNumber);
     }
 
     @Override
