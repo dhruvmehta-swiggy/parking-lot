@@ -23,6 +23,15 @@ public class ParkingLot {
         }
     }
 
+    // Method to park the vehicle at a given location
+    public Ticket park(Vehicle vehicle, int location) {
+        Util.validateVehicle(vehicle);
+        Slot nearestSlot = slots.get(location);
+        Util.validateSlot(nearestSlot);
+
+        return new Ticket(nearestSlot, vehicle);
+    }
+
     // Method to park the vehicle at the nearest slot
     public void park(Vehicle vehicle) {
         if (vehicle == null) {
@@ -46,6 +55,17 @@ public class ParkingLot {
         }
 
         return null;
+    }
+
+    // Method to find the nearest slot by location
+    protected int findLocationOfNearestSlot(){
+        for (int i = 0; i < slots.size(); i++) {
+            if (!slots.get(i).isOccupied()) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     // Method to unpark the vehicle by registration number
