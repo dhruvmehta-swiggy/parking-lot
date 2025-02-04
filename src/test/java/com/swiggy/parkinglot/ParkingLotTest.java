@@ -78,4 +78,47 @@ public class ParkingLotTest {
         // Unpark the same vehicle again
         assertThrows(IllegalStateException.class, () -> parkingLot.unpark("KA-01-HH-1234"));
     }
+
+    // Test to check countVehiclesWithColour method when no vehicle is parked
+    @Test
+    public void testCountVehiclesWithColour_WhenNoVehicleParked_ThenCountIs0() {
+        ParkingLot parkingLot = new ParkingLot(2);
+
+        assertEquals(0, parkingLot.countVehiclesWithColour(VehicleColor.WHITE));
+    }
+
+    // Test to check countVehiclesWithColour method when no vehicle with white color is parked
+    @Test
+    public void testCountVehiclesWithColour_WhenNoVehicleWithWhiteColorParked_ThenCountIs0() {
+        ParkingLot parkingLot = new ParkingLot(2);
+
+        parkingLot.park(new Vehicle("KA-01-HH-1234", VehicleColor.BLACK, VehicleType.CAR));
+        parkingLot.park(new Vehicle("KA-01-HH-1235", VehicleColor.BLACK, VehicleType.CAR));
+
+        assertEquals(0, parkingLot.countVehiclesWithColour(VehicleColor.WHITE));
+    }
+
+    // Test to check countVehiclesWithColour method when a vehicle with white color is parked
+    @Test
+    public void testCountVehiclesWithColour_WhenOneVehicleWithWhiteColorParked_ThenCountIs1() {
+        ParkingLot parkingLot = new ParkingLot(3);
+
+        parkingLot.park(new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR));
+        parkingLot.park(new Vehicle("KA-01-HH-1235", VehicleColor.BLACK, VehicleType.CAR));
+        parkingLot.park(new Vehicle("KA-01-HH-1235", VehicleColor.BLUE, VehicleType.CAR));
+
+        assertEquals(1, parkingLot.countVehiclesWithColour(VehicleColor.WHITE));
+    }
+
+    // Test to check countVehiclesWithColour method when two vehicles with black color are parked
+    @Test
+    public void testCountVehiclesWithColour_WhenTwoVehiclesWithBlackColorParked_ThenCountIs2() {
+        ParkingLot parkingLot = new ParkingLot(3);
+
+        parkingLot.park(new Vehicle("KA-01-HH-1234", VehicleColor.BLACK, VehicleType.CAR));
+        parkingLot.park(new Vehicle("KA-01-HH-1235", VehicleColor.BLACK, VehicleType.CAR));
+        parkingLot.park(new Vehicle("KA-01-HH-1235", VehicleColor.BLUE, VehicleType.CAR));
+
+        assertEquals(2, parkingLot.countVehiclesWithColour(VehicleColor.BLACK));
+    }
 }

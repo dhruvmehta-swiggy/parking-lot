@@ -1,6 +1,7 @@
 package com.swiggy.parkinglot;
 
 import com.swiggy.parkinglot.vehicle.Vehicle;
+import com.swiggy.parkinglot.vehicle.VehicleColor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,5 +72,17 @@ public class ParkingLot {
         }
 
         return null;
+    }
+
+    // Method to count the vehicles with the given color
+    public int countVehiclesWithColour(VehicleColor color) {
+        int count = 0;
+        for (Slot slot : slots) {
+            if (slot.isOccupied() && slot.isVehicleWithColor(color)) {
+                count++;
+            }
+        }
+
+        return count;
     }
 }
