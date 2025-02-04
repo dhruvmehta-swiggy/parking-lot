@@ -44,4 +44,18 @@ public class ParkingLotAttendant {
 
         return nearestParkingLot.park(vehicle, nearestSlotLocation);
     }
+
+    // Method to unpark a vehicle from the parking lot using the ticket
+    public void unpark(Ticket ticket) {
+        Util.validateTicket(ticket);
+
+        for (ParkingLot parkingLot : parkingLots) {
+            if (ticket.hasParkingLot(parkingLot)) {
+                parkingLot.unpark(ticket);
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException("Ticket is not valid");
+    }
 }

@@ -5,8 +5,7 @@ import com.swiggy.parkinglot.vehicle.VehicleColor;
 import com.swiggy.parkinglot.vehicle.VehicleType;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotAttendantTest {
 
@@ -36,5 +35,30 @@ public class ParkingLotAttendantTest {
         Ticket ticket = attendant.park(vehicle);
 
         assertNotNull(ticket);
+    }
+
+    // Test to check un-park method when same vehicle is parked and un-parked
+    @Test
+    public void testUnpark_WhenUnparkVehicle_ThenNoException() {
+        ParkingLotAttendant attendant = new ParkingLotAttendant();
+        ParkingLot parkingLot = new ParkingLot(10);
+        attendant.assign(parkingLot);
+        Vehicle vehicle = new Vehicle("KA-01-HH-1234", VehicleColor.BLUE, VehicleType.CAR);
+        Ticket ticket = attendant.park(vehicle);
+
+        assertDoesNotThrow(() -> attendant.unpark(ticket));
+    }
+
+    // Test to check un-park method when a ticket is un-parked twice
+    @Test
+    public void testUnpark_WhenUnparkVehicleTwice_ThrowsIllegalArgumentException() {
+        ParkingLotAttendant attendant = new ParkingLotAttendant();
+        ParkingLot parkingLot = new ParkingLot(10);
+        attendant.assign(parkingLot);
+        Vehicle vehicle = new Vehicle("KA-01-HH-1234", VehicleColor.BLUE, VehicleType.CAR);
+        Ticket ticket = attendant.park(vehicle);
+        attendant.unpark(ticket);
+
+        assertThrows(IllegalArgumentException.class, () -> attendant.unpark(ticket));
     }
 }
