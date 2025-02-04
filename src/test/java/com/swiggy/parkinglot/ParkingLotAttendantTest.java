@@ -52,6 +52,21 @@ public class ParkingLotAttendantTest {
         assertNotNull(ticket);
     }
 
+    // Test to check if the ParkingLotAttendant is able to park a vehicle with multiple parking lots
+    @Test
+    public void testPark_WhenTwoParkingLots_ThenNewTicket() {
+        ParkingLotAttendant attendant = new ParkingLotAttendant();
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        attendant.assign(parkingLot1);
+        attendant.assign(parkingLot2);
+        Vehicle vehicle = new Vehicle("KA-01-HH-1234", VehicleColor.BLUE, VehicleType.CAR);
+
+        Ticket ticket = attendant.park(vehicle);
+
+        assertNotNull(ticket);
+    }
+
     // Test to check un-park method when same vehicle is parked and un-parked
     @Test
     public void testUnpark_WhenUnparkVehicle_ThenNoException() {
@@ -75,5 +90,22 @@ public class ParkingLotAttendantTest {
         attendant.unpark(ticket);
 
         assertThrows(IllegalArgumentException.class, () -> attendant.unpark(ticket));
+    }
+
+    // Test to check un-park method when multiple vehicles and parking lots are assigned
+    @Test
+    public void testUnpark_WhenMultipleVehiclesAndParkingLots_ThenNoException() {
+        ParkingLotAttendant attendant = new ParkingLotAttendant();
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        attendant.assign(parkingLot1);
+        attendant.assign(parkingLot2);
+        Vehicle vehicle1 = new Vehicle("KA-01-HH-1234", VehicleColor.BLUE, VehicleType.CAR);
+        Vehicle vehicle2 = new Vehicle("KA-01-HH-1235", VehicleColor.BLUE, VehicleType.CAR);
+        Ticket ticket1 = attendant.park(vehicle1);
+        Ticket ticket2 = attendant.park(vehicle2);
+
+        assertDoesNotThrow(() -> attendant.unpark(ticket1));
+        assertDoesNotThrow(() -> attendant.unpark(ticket2));
     }
 }
