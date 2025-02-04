@@ -12,4 +12,11 @@ public class ParkingLotAttendant {
     public ParkingLotAttendant() {
         this.parkingLots = new ArrayList<>();
     }
+
+    // Method to assign a parking lot to the attendant
+    public void assign(ParkingLot parkingLot) {
+        Util.validateParkingLot(parkingLot);
+
+        parkingLots.add(parkingLot);
+    }
 }

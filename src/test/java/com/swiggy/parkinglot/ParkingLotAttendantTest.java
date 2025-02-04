@@ -12,4 +12,12 @@ public class ParkingLotAttendantTest {
         assertDoesNotThrow(ParkingLotAttendant::new);
     }
 
+    // Test to check if the ParkingLotAttendant is assigned a ParkingLot without any exception
+    @Test
+    public void testAssign_WhenValidParkingLot_ThenNoException() {
+        ParkingLotAttendant parkingLotAttendant = new ParkingLotAttendant();
+        ParkingLot parkingLot = new ParkingLot(10);
+
+        assertDoesNotThrow(() -> parkingLotAttendant.assign(parkingLot));
+    }
 }
