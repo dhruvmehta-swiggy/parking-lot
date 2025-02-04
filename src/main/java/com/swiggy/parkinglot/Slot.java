@@ -1,6 +1,8 @@
 package com.swiggy.parkinglot;
 
 import com.swiggy.parkinglot.vehicle.Vehicle;
+import com.swiggy.parkinglot.vehicle.VehicleColor;
+
 import java.util.Objects;
 
 public class Slot {
@@ -33,12 +35,16 @@ public class Slot {
         return parkedVehicle != null;
     }
 
+    // Method to get the parked vehicle
     public boolean isVehicleWithRegistrationNumber(String registrationNumber) {
-        if (registrationNumber == null || registrationNumber.isEmpty()) {
-            return false;
-        }
+        Util.validateRegistrationNumber(registrationNumber);
 
         return parkedVehicle.hasSameRegistrationNumber(registrationNumber);
+    }
+
+    // Method to get the parked vehicle
+    public boolean isVehicleWithColor(VehicleColor color) {
+        return parkedVehicle.hasSameColor(color);
     }
 
     @Override

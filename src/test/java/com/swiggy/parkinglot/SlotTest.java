@@ -28,6 +28,28 @@ public class SlotTest {
         assertThrows(IllegalStateException.class, slot::unpark);
     }
 
+    // Test to check isVehicleWithRegistrationNumber method when registration number is same
+    @Test
+    public void testIsVehicleWithRegistrationNumber_WhenSameRegistrationNumber_ThenTrue() {
+        Vehicle car = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
+        Slot slot = new Slot();
+        slot.park(car);
+
+        String expectedRegistrationNumber = "KA-01-HH-1234";
+        assertTrue(slot.isVehicleWithRegistrationNumber(expectedRegistrationNumber));
+    }
+
+    // Test to check isVehicleWithRegistrationNumber method when registration number is different
+    @Test
+    public void testIsVehicleWithRegistrationNumber_WhenDifferentRegistrationNumber_ThenFalse() {
+        Vehicle car = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
+        Slot slot = new Slot();
+        slot.park(car);
+
+        String expectedRegistrationNumber = "KA-01-HH-1235";
+        assertFalse(slot.isVehicleWithRegistrationNumber(expectedRegistrationNumber));
+    }
+
     // Test to check equals method when different objects with same values are compared
     @Test
     public void testEquals_WhenSameValues_ThenTrue() {
@@ -38,6 +60,28 @@ public class SlotTest {
         slot2.park(car);
 
         assertEquals(slot1, slot2);
+    }
+
+    // Test to check isVehicleWithColor method when color is same
+    @Test
+    public void testIsVehicleWithColor_WhenSameColor_ThenTrue() {
+        Vehicle car = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
+        Slot slot = new Slot();
+        slot.park(car);
+
+        VehicleColor expectedColor = VehicleColor.WHITE;
+        assertTrue(slot.isVehicleWithColor(expectedColor));
+    }
+
+    // Test to check isVehicleWithColor method when color is different
+    @Test
+    public void testIsVehicleWithColor_WhenDifferentColor_ThenFalse() {
+        Vehicle car = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
+        Slot slot = new Slot();
+        slot.park(car);
+
+        VehicleColor expectedColor = VehicleColor.BLACK;
+        assertFalse(slot.isVehicleWithColor(expectedColor));
     }
 
     // Test to check equals method when different objects are compared
