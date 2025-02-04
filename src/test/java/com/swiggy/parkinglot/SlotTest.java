@@ -28,6 +28,15 @@ public class SlotTest {
         assertThrows(IllegalStateException.class, slot::unpark);
     }
 
+    // Test to check isVehicleWithRegistrationNumber method when vehicle is not parked
+    @Test
+    public void testIsVehicleWithRegistrationNumber_WhenVehicleNotParked_ThenFalse() {
+        Slot slot = new Slot();
+
+        String registrationNumber = "KA-01-HH-1234";
+        assertFalse(slot.isVehicleWithRegistrationNumber(registrationNumber));
+    }
+
     // Test to check isVehicleWithRegistrationNumber method when registration number is same
     @Test
     public void testIsVehicleWithRegistrationNumber_WhenSameRegistrationNumber_ThenTrue() {
@@ -60,6 +69,15 @@ public class SlotTest {
         slot2.park(car);
 
         assertEquals(slot1, slot2);
+    }
+
+    // Test to check isVehicleWithColor method when vehicle is not parked
+    @Test
+    public void testIsVehicleWithColor_WhenVehicleNotParked_ThenFalse() {
+        Slot slot = new Slot();
+
+        VehicleColor expectedColor = VehicleColor.WHITE;
+        assertFalse(slot.isVehicleWithColor(expectedColor));
     }
 
     // Test to check isVehicleWithColor method when color is same

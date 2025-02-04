@@ -37,6 +37,10 @@ public class Slot {
 
     // Method to get the parked vehicle
     public boolean isVehicleWithRegistrationNumber(String registrationNumber) {
+        if (parkedVehicle == null) {
+            return false;
+        }
+
         Util.validateRegistrationNumber(registrationNumber);
 
         return parkedVehicle.hasSameRegistrationNumber(registrationNumber);
@@ -44,6 +48,10 @@ public class Slot {
 
     // Method to get the parked vehicle
     public boolean isVehicleWithColor(VehicleColor color) {
+        if (parkedVehicle == null) {
+            return false;
+        }
+
         return parkedVehicle.hasSameColor(color);
     }
 
