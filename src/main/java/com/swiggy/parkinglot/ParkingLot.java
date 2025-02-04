@@ -33,31 +33,6 @@ public class ParkingLot {
         return new Ticket(this, nearestSlot, vehicle);
     }
 
-    // Method to park the vehicle at the nearest slot
-    public void park(Vehicle vehicle) {
-        if (vehicle == null) {
-            throw new IllegalArgumentException("Vehicle cannot be null");
-        }
-
-        Slot nearestSlot = findNearestSlot();
-        if (nearestSlot == null) {
-            throw new IllegalStateException("Parking Lot is full");
-        }
-
-        nearestSlot.park(vehicle);
-    }
-
-    // Method to find the nearest slot from the entrance
-    private Slot findNearestSlot() {
-        for (Slot slot : slots) {
-            if (!slot.isOccupied()) {
-                return slot;
-            }
-        }
-
-        return null;
-    }
-
     // Method to find the nearest slot by location
     protected int findLocationOfNearestSlot(){
         for (int i = 0; i < slots.size(); i++) {
@@ -81,32 +56,6 @@ public class ParkingLot {
         }
 
         throw new IllegalArgumentException("Ticket does not belong to any slot in the parking lot");
-    }
-
-    // Method to unpark the vehicle by registration number
-    public void unpark(String registrationNumber) {
-        Util.validateRegistrationNumber(registrationNumber);
-
-        Slot vehicleSlot = fetchSlotByRegistrationNumber(registrationNumber);
-
-        if (vehicleSlot == null) {
-            throw new IllegalStateException("Vehicle not found in Parking Lot");
-        }
-
-        vehicleSlot.unpark();
-    }
-
-    // Method to fetch the slot where the vehicle is parked by registration number
-    private Slot fetchSlotByRegistrationNumber(String registrationNumber) {
-        Util.validateRegistrationNumber(registrationNumber);
-
-        for (Slot slot : slots) {
-            if (slot.isOccupied() && slot.compareParkedVehicle(registrationNumber)) {
-                return slot;
-            }
-        }
-
-        return null;
     }
 
     // Method to count the vehicles with the given color
