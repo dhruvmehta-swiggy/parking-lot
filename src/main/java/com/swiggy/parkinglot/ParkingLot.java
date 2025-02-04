@@ -27,6 +27,7 @@ public class ParkingLot {
     public Ticket park(Vehicle vehicle, int location) {
         Util.validateVehicle(vehicle);
         Slot nearestSlot = slots.get(location);
+        nearestSlot.park(vehicle);
         Util.validateSlot(nearestSlot);
 
         return new Ticket(this, nearestSlot, vehicle);
@@ -66,6 +67,20 @@ public class ParkingLot {
         }
 
         return -1;
+    }
+
+    // Method to unpark the vehicle using the ticket
+    public void unpark(Ticket ticket) {
+        Util.validateTicket(ticket);
+
+        for (Slot slot : slots) {
+            if (slot.isOccupied() && ticket.hasSlot(slot)) {
+                slot.unpark();
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException("Ticket does not belong to any slot in the parking lot");
     }
 
     // Method to unpark the vehicle by registration number

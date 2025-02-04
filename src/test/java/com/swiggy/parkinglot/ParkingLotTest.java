@@ -121,4 +121,31 @@ public class ParkingLotTest {
 
         assertEquals(2, parkingLot.countVehiclesWithColour(VehicleColor.BLACK));
     }
+
+    // Test to check park method when vehicle is parked
+    @Test
+    public void testUnpark_WhenValidTicket_ThenDoestNotThrowException() {
+        ParkingLotAttendant attendant = new ParkingLotAttendant();
+        ParkingLot parkingLot = new ParkingLot(2);
+        attendant.assign(parkingLot);
+
+        Vehicle vehicle1 = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
+        Ticket ticket1 = attendant.park(vehicle1);
+
+        assertDoesNotThrow(() -> parkingLot.unpark(ticket1));
+    }
+
+    // Test to check park method when vehicle is un-parked twice
+    @Test
+    public void testUnpark_WhenInvalidTicket_ThrowIllegalArgumentException() {
+        ParkingLotAttendant attendant = new ParkingLotAttendant();
+        ParkingLot parkingLot = new ParkingLot(2);
+        attendant.assign(parkingLot);
+
+        Vehicle vehicle1 = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
+        Ticket ticket = attendant.park(vehicle1);
+        parkingLot.unpark(ticket);
+
+        assertThrows(IllegalArgumentException.class, () -> parkingLot.unpark(ticket));
+    }
 }
