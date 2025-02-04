@@ -17,4 +17,22 @@ public class UtilTest {
     public void testValidateRegistrationNumber_WhenRegistrationNumberIsEmpty_ThrowIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> Util.validateRegistrationNumber(""));
     }
+
+    // Test to check validateSlot method when slot is null
+    @Test
+    public void testValidateSlot_WhenSlotIsNull_ThrowIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> Util.validateSlot(null));
+    }
+
+    // Test to check validateVehicle method when vehicle is null
+    @Test
+    public void testValidateVehicle_WhenVehicleIsNull_ThrowIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> Util.validateVehicle(null));
+    }
+
+    // Test to check validateVehicleColor method when color is null
+    @Test
+    public void testValidateVehicleColor_WhenColorIsNull_ThrowIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> Util.validateVehicleColor(null));
+    }
 }
