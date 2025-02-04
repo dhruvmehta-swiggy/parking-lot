@@ -4,7 +4,6 @@ import com.swiggy.parkinglot.vehicle.Vehicle;
 import com.swiggy.parkinglot.vehicle.VehicleColor;
 import com.swiggy.parkinglot.vehicle.VehicleType;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -143,29 +142,29 @@ public class SlotTest {
 
     // Test to check getSlotByRegistrationNumber method when registration number is null
     @Test
-    public void testGetSlotByRegistrationNumber_WhenRegistrationNumberIsNull_ThrowsIllegalArgumentException() {
+    public void testFetchSlotByRegistrationNumber_WhenRegistrationNumberIsNull_ThrowsIllegalArgumentException() {
         // Arrange
         List<Slot> slots = new ArrayList<>();
         slots.add(new Slot(0));
         slots.add(new Slot(1));
 
-        assertThrows(IllegalArgumentException.class, () -> Slot.getSlotByRegistrationNumber(slots, null));
+        assertThrows(IllegalArgumentException.class, () -> Slot.fetchSlotByRegistrationNumber(slots, null));
     }
 
     // Test to check getSlotByRegistrationNumber method when registration number is empty
     @Test
-    public void testGetSlotByRegistrationNumber_WhenRegistrationNumberIsEmpty_ThrowsIllegalArgumentException() {
+    public void testFetchSlotByRegistrationNumber_WhenRegistrationNumberIsEmpty_ThrowsIllegalArgumentException() {
         // Arrange
         List<Slot> slots = new ArrayList<>();
         slots.add(new Slot(0));
         slots.add(new Slot(1));
 
-        assertThrows(IllegalArgumentException.class, () -> Slot.getSlotByRegistrationNumber(slots, ""));
+        assertThrows(IllegalArgumentException.class, () -> Slot.fetchSlotByRegistrationNumber(slots, ""));
     }
 
     // Test to check getSlotByRegistrationNumber method when registration number is not found
     @Test
-    public void testGetSlotByRegistrationNumber_WhenRegistrationNumberNotFound_ThenNull() {
+    public void testFetchSlotByRegistrationNumber_WhenRegistrationNumberNotFound_ThenNull() {
         // Arrange
         List<Slot> slots = new ArrayList<>();
         Slot slot1 = new Slot(0);
@@ -177,14 +176,14 @@ public class SlotTest {
         slot2.park(car2);
         slots.add(slot2);
 
-        Slot expectedSlot = Slot.getSlotByRegistrationNumber(slots, "XYZ123");
+        Slot expectedSlot = Slot.fetchSlotByRegistrationNumber(slots, "XYZ123");
 
         assertNull(expectedSlot);
     }
 
     // Test to check getSlotByRegistrationNumber method when registration number is found
     @Test
-    public void testGetSlotByRegistrationNumber_WhenRegistrationNumberFound_ThenSlot() {
+    public void testFetchSlotByRegistrationNumber_WhenRegistrationNumberFound_ThenSlot() {
         List<Slot> slots = new ArrayList<>();
         Slot slot1 = new Slot(0);
         Slot slot2 = new Slot(1);
@@ -195,7 +194,7 @@ public class SlotTest {
         slot2.park(car2);
         slots.add(slot2);
 
-        Slot expectedSlot = Slot.getSlotByRegistrationNumber(slots, "ABC000");
+        Slot expectedSlot = Slot.fetchSlotByRegistrationNumber(slots, "ABC000");
 
         assertEquals(expectedSlot, slot2);
     }

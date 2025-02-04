@@ -56,7 +56,7 @@ public class Slot {
     }
 
     // Method to get the slot where the vehicle is parked by registration number
-    public static Slot getSlotByRegistrationNumber(List<Slot> slots, String registrationNumber) {
+    public static Slot fetchSlotByRegistrationNumber(List<Slot> slots, String registrationNumber) {
         if (registrationNumber == null || registrationNumber.isEmpty()) {
             throw new IllegalArgumentException("Registration Number cannot be null or empty");
         }

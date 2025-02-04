@@ -45,7 +45,6 @@ public class ParkingLotTest {
     public void testParkAtNearestSlot_WhenAllSlotsEmpty_ThenVehicleParked() {
         ParkingLot parkingLot = new ParkingLot(3);
         Vehicle mockVehicle = mock(Vehicle.class);
-        when(mockVehicle.hasSameRegistrationNumber("ABC123")).thenReturn(true);
         when(mockVehicle.hasSameColor(VehicleColor.RED)).thenReturn(true);
 
         // Park the mock vehicle
