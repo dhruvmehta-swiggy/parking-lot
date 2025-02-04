@@ -1,17 +1,19 @@
 package com.swiggy.parkinglot;
 
+import com.swiggy.parkinglot.vehicle.Vehicle;
+
 public class Ticket {
 
     private final Slot slot;
-    private final String registrationNumber;
+    private final Vehicle vehicle;
 
     // Constructor
-    public Ticket(Slot slot, String registrationNumber) {
+    public Ticket(Slot slot, Vehicle vehicle) {
         Util.validateSlot(slot);
-        Util.validateRegistrationNumber(registrationNumber);
+        Util.validateVehicle(vehicle);
 
         this.slot = slot;
-        this.registrationNumber = registrationNumber;
+        this.vehicle = vehicle;
     }
 
 }
