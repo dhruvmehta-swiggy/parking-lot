@@ -32,4 +32,11 @@ public class Util {
             throw new IllegalArgumentException("Vehicle Color cannot be null");
         }
     }
+
+    // Method to validate the parking lot
+    public static void validateParkingLot(ParkingLot parkingLot) {
+        if (parkingLot == null) {
+            throw new IllegalArgumentException("Parking Lot cannot be null");
+        }
+    }
 }

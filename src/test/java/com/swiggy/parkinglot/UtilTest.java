@@ -35,4 +35,10 @@ public class UtilTest {
     public void testValidateVehicleColor_WhenColorIsNull_ThrowIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> Util.validateVehicleColor(null));
     }
+
+    // Test to check validateParkingLot method when parking lot is null
+    @Test
+    public void testValidateParkingLot_WhenParkingLotIsNull_ThrowIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> Util.validateParkingLot(null));
+    }
 }
