@@ -30,12 +30,12 @@ public class Slot {
         parkedVehicle = null;
     }
     
-    // Method to get the parked vehicle
+    // Method to check if the slot is occupied
     public boolean isOccupied() {
         return parkedVehicle != null;
     }
 
-    // Method to get the parked vehicle
+    // Method to compare the registration number of the parked vehicle
     public boolean isVehicleWithRegistrationNumber(String registrationNumber) {
         if (parkedVehicle == null) {
             return false;
