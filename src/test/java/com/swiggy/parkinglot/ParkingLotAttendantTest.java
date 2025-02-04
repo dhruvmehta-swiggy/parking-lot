@@ -24,6 +24,21 @@ public class ParkingLotAttendantTest {
         assertDoesNotThrow(() -> parkingLotAttendant.assign(parkingLot));
     }
 
+    // Test to check if the ParkingLotAttendant is assigned with multiple ParkingLots without any exception
+    @Test
+    public void testAssign_WhenFourParkingLots_ThenNoException() {
+        ParkingLotAttendant parkingLotAttendant = new ParkingLotAttendant();
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        ParkingLot parkingLot3 = new ParkingLot(10);
+        ParkingLot parkingLot4 = new ParkingLot(10);
+
+        assertDoesNotThrow(() -> parkingLotAttendant.assign(parkingLot1));
+        assertDoesNotThrow(() -> parkingLotAttendant.assign(parkingLot2));
+        assertDoesNotThrow(() -> parkingLotAttendant.assign(parkingLot3));
+        assertDoesNotThrow(() -> parkingLotAttendant.assign(parkingLot4));
+    }
+
     // Test to check if the ParkingLotAttendant is able to park a vehicle and get a ticket
     @Test
     public void testPark_WhenValidVehicle_ThenNewTicket() {
