@@ -24,7 +24,7 @@ public class ParkingLot {
     }
 
     // Method to park the vehicle at the nearest slot
-    public void parkAtNearestSlot(Vehicle vehicle) {
+    public void park(Vehicle vehicle) {
         if (vehicle == null) {
             throw new IllegalArgumentException("Vehicle cannot be null");
         }

@@ -3,9 +3,7 @@ package com.swiggy.parkinglot;
 import com.swiggy.parkinglot.vehicle.Vehicle;
 import com.swiggy.parkinglot.vehicle.VehicleColor;
 import com.swiggy.parkinglot.vehicle.VehicleType;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -34,34 +32,34 @@ public class ParkingLotTest {
 
     // Test to check parkAtNearestSlot method when vehicle is null
     @Test
-    public void testParkAtNearestSlot_WhenVehicleIsNull_ThenIllegalArgumentException() {
+    public void testPark_WhenVehicleIsNull_ThenIllegalArgumentException() {
         ParkingLot parkingLot = new ParkingLot(2);
 
-        assertThrows(IllegalArgumentException.class, () -> parkingLot.parkAtNearestSlot(null));
+        assertThrows(IllegalArgumentException.class, () -> parkingLot.park(null));
     }
 
     // Test to check parkAtNearestSlot method when all slots are empty
     @Test
-    public void testParkAtNearestSlot_WhenAllSlotsEmpty_ThenVehicleParked() {
+    public void testPark_WhenAllSlotsEmpty_ThenVehicleParked() {
         ParkingLot parkingLot = new ParkingLot(3);
         Vehicle mockVehicle = mock(Vehicle.class);
         when(mockVehicle.hasSameColor(VehicleColor.RED)).thenReturn(true);
 
         // Park the mock vehicle
-        parkingLot.parkAtNearestSlot(mockVehicle);
+        parkingLot.park(mockVehicle);
 
         assertEquals(1, parkingLot.fetchNumberOfCarsWithColor(VehicleColor.RED));
     }
 
     // Test to check parkAtNearestSlot method when all slots are full
     @Test
-    public void testParkAtNearestSlot_WhenAllSlotsFull_ThenIllegalStateException() {
+    public void testPark_WhenAllSlotsFull_ThenIllegalStateException() {
         ParkingLot parkingLot = new ParkingLot(2);
 
-        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR));
-        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1235", VehicleColor.WHITE, VehicleType.CAR));
+        parkingLot.park(new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR));
+        parkingLot.park(new Vehicle("KA-01-HH-1235", VehicleColor.WHITE, VehicleType.CAR));
 
-        assertThrows(IllegalStateException.class, () -> parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1236", VehicleColor.WHITE, VehicleType.CAR)));
+        assertThrows(IllegalStateException.class, () -> parkingLot.park(new Vehicle("KA-01-HH-1236", VehicleColor.WHITE, VehicleType.CAR)));
     }
 
     // Test to check unpark method when registration number is not found
@@ -69,8 +67,8 @@ public class ParkingLotTest {
     public void testUnpark_RegistrationNumber_WhenRegistrationNumberNotFound_ThenIllegalStateException() {
         ParkingLot parkingLot = new ParkingLot(2);
 
-        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR));
-        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1235", VehicleColor.WHITE, VehicleType.CAR));
+        parkingLot.park(new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR));
+        parkingLot.park(new Vehicle("KA-01-HH-1235", VehicleColor.WHITE, VehicleType.CAR));
 
         assertThrows(IllegalStateException.class, () -> parkingLot.unpark_RegistrationNumber("KA-01-HH-1236"));
     }
@@ -83,8 +81,8 @@ public class ParkingLotTest {
         Vehicle vehicle1 = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
         Vehicle vehicle2 = new Vehicle("KA-01-HH-1235", VehicleColor.WHITE, VehicleType.CAR);
 
-        parkingLot.parkAtNearestSlot(vehicle1);
-        parkingLot.parkAtNearestSlot(vehicle2);
+        parkingLot.park(vehicle1);
+        parkingLot.park(vehicle2);
 
         // Unpark the vehicle once
         parkingLot.unpark_RegistrationNumber("KA-01-HH-1234");
@@ -97,8 +95,8 @@ public class ParkingLotTest {
     @Test
     public void testFetchNumberOfCarsWithColor_WhenNoWhiteCars_ThenZero() {
         ParkingLot parkingLot = new ParkingLot(2);
-        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1234", VehicleColor.BLACK, VehicleType.CAR));
-        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1235", VehicleColor.BROWN, VehicleType.CAR));
+        parkingLot.park(new Vehicle("KA-01-HH-1234", VehicleColor.BLACK, VehicleType.CAR));
+        parkingLot.park(new Vehicle("KA-01-HH-1235", VehicleColor.BROWN, VehicleType.CAR));
 
         int expected = parkingLot.fetchNumberOfCarsWithColor(VehicleColor.WHITE);
 
@@ -109,9 +107,9 @@ public class ParkingLotTest {
     @Test
     public void testFetchNumberOfCarsWithColor_WhenTwoWhiteCars_ThenTwo() {
         ParkingLot parkingLot = new ParkingLot(3);
-        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR));
-        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1235", VehicleColor.WHITE, VehicleType.CAR));
-        parkingLot.parkAtNearestSlot(new Vehicle("KA-01-HH-1236", VehicleColor.BLACK, VehicleType.CAR));
+        parkingLot.park(new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR));
+        parkingLot.park(new Vehicle("KA-01-HH-1235", VehicleColor.WHITE, VehicleType.CAR));
+        parkingLot.park(new Vehicle("KA-01-HH-1236", VehicleColor.BLACK, VehicleType.CAR));
 
         int expected = parkingLot.fetchNumberOfCarsWithColor(VehicleColor.WHITE);
 
