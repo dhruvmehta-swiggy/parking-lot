@@ -10,9 +10,9 @@ public class Ticket {
 
     // Constructor
     public Ticket(ParkingLot parkingLot, Slot slot, Vehicle vehicle) {
-        Util.validateSlot(slot);
-        Util.validateVehicle(vehicle);
-        Util.validateParkingLot(parkingLot);
+        Util.validateSlot(slot, "Slot cannot be null");
+        Util.validateVehicle(vehicle, "Vehicle cannot be null");
+        Util.validateParkingLot(parkingLot, "Parking Lot cannot be null");
 
         this.parkingLot = parkingLot;
         this.slot = slot;

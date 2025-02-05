@@ -17,14 +17,14 @@ public class ParkingLotAttendant {
 
     // Method to assign a parking lot to the attendant
     public void assign(ParkingLot parkingLot) {
-        Util.validateParkingLot(parkingLot);
+        Util.validateParkingLot(parkingLot, "Parking Lot cannot be null");
 
         parkingLots.add(parkingLot);
     }
 
     // Method to park a vehicle in the parking lot
     public Ticket park(Vehicle vehicle) {
-        Util.validateVehicle(vehicle);
+        Util.validateVehicle(vehicle, "Vehicle cannot be null");
 
         ParkingLot nearestParkingLot = null;
         int nearestSlotLocation = Integer.MAX_VALUE;
@@ -47,7 +47,7 @@ public class ParkingLotAttendant {
 
     // Method to unpark a vehicle from the parking lot using the ticket
     public void unpark(Ticket ticket) {
-        Util.validateTicket(ticket);
+        Util.validateTicket(ticket, "Ticket cannot be null");
 
         for (ParkingLot parkingLot : parkingLots) {
             if (ticket.hasParkingLot(parkingLot)) {

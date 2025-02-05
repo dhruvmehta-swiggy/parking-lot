@@ -41,7 +41,7 @@ public class Slot {
             return false;
         }
 
-        Util.validateRegistrationNumber(registrationNumber);
+        Util.validateRegistrationNumber(registrationNumber, "Registration Number cannot be null or empty");
 
         return parkedVehicle.hasSameRegistrationNumber(registrationNumber);
     }

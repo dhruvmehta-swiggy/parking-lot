@@ -25,10 +25,10 @@ public class ParkingLot {
 
     // Method to park the vehicle at a given location
     public Ticket park(Vehicle vehicle, int location) {
-        Util.validateVehicle(vehicle);
+        Util.validateVehicle(vehicle, "Vehicle cannot be null");
         Slot nearestSlot = slots.get(location);
         nearestSlot.park(vehicle);
-        Util.validateSlot(nearestSlot);
+        Util.validateSlot(nearestSlot, "Unable to park vehicle at null slot");
 
         return new Ticket(this, nearestSlot, vehicle);
     }
@@ -46,7 +46,7 @@ public class ParkingLot {
 
     // Method to unpark the vehicle using the ticket
     public void unpark(Ticket ticket) {
-        Util.validateTicket(ticket);
+        Util.validateTicket(ticket, "Ticket cannot be null");
 
         for (Slot slot : slots) {
             if (slot.isOccupied() && ticket.hasSlot(slot)) {
