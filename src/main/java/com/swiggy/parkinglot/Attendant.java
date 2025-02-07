@@ -5,13 +5,13 @@ import com.swiggy.parkinglot.vehicle.Vehicle;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParkingLotAttendant {
+public class Attendant {
 
     // List of parking lots managed by the attendant
     private final List<ParkingLot> parkingLots;
 
     // Constructor
-    public ParkingLotAttendant() {
+    public Attendant() {
         this.parkingLots = new ArrayList<>();
     }
 

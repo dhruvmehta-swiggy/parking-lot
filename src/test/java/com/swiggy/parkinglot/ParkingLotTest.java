@@ -39,7 +39,7 @@ public class ParkingLotTest {
     // Test to check countVehiclesWithColour method when no vehicle with white color is parked
     @Test
     public void testCountVehiclesWithColour_WhenNoVehicleWithWhiteColorParked_ThenCountIs0() {
-        ParkingLotAttendant attendant = new ParkingLotAttendant();
+        Attendant attendant = new Attendant();
         ParkingLot parkingLot = new ParkingLot(2);
         attendant.assign(parkingLot);
 
@@ -52,7 +52,7 @@ public class ParkingLotTest {
     // Test to check countVehiclesWithColour method when a vehicle with white color is parked
     @Test
     public void testCountVehiclesWithColour_WhenOneVehicleWithWhiteColorParked_ThenCountIs1() {
-        ParkingLotAttendant attendant = new ParkingLotAttendant();
+        Attendant attendant = new Attendant();
         ParkingLot parkingLot = new ParkingLot(3);
         attendant.assign(parkingLot);
 
@@ -66,7 +66,7 @@ public class ParkingLotTest {
     // Test to check countVehiclesWithColour method when two vehicles with black color are parked
     @Test
     public void testCountVehiclesWithColour_WhenTwoVehiclesWithBlackColorParked_ThenCountIs2() {
-        ParkingLotAttendant attendant = new ParkingLotAttendant();
+        Attendant attendant = new Attendant();
         ParkingLot parkingLot = new ParkingLot(3);
         attendant.assign(parkingLot);
 
@@ -80,7 +80,7 @@ public class ParkingLotTest {
     // Test to check park method when vehicle is parked
     @Test
     public void testUnpark_WhenValidTicket_ThenDoestNotThrowException() {
-        ParkingLotAttendant attendant = new ParkingLotAttendant();
+        Attendant attendant = new Attendant();
         ParkingLot parkingLot = new ParkingLot(2);
         attendant.assign(parkingLot);
 
@@ -93,7 +93,7 @@ public class ParkingLotTest {
     // Test to check park method when vehicle is un-parked twice
     @Test
     public void testUnpark_WhenInvalidTicket_ThrowIllegalArgumentException() {
-        ParkingLotAttendant attendant = new ParkingLotAttendant();
+        Attendant attendant = new Attendant();
         ParkingLot parkingLot = new ParkingLot(2);
         attendant.assign(parkingLot);
 
