@@ -1,6 +1,7 @@
 package com.swiggy.parkinglot;
 
 import com.swiggy.parkinglot.exception.*;
+import com.swiggy.parkinglot.parking_lot.ParkingLot;
 import com.swiggy.parkinglot.vehicle.Vehicle;
 import com.swiggy.parkinglot.vehicle.VehicleColor;
 

@@ -1,5 +1,7 @@
-package com.swiggy.parkinglot;
+package com.swiggy.parkinglot.parking_lot;
 
+import com.swiggy.parkinglot.Attendant;
+import com.swiggy.parkinglot.Ticket;
 import com.swiggy.parkinglot.vehicle.Vehicle;
 import com.swiggy.parkinglot.vehicle.VehicleColor;
 import com.swiggy.parkinglot.vehicle.VehicleType;
