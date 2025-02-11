@@ -24,24 +24,17 @@ public class ParkingLot {
     }
 
     // Method to park the vehicle at a given location
-    public Ticket park(Vehicle vehicle, int location) {
+    public Ticket park(Vehicle vehicle) {
         Util.validateVehicle(vehicle, "Vehicle cannot be null");
-        Slot nearestSlot = slots.get(location);
-        nearestSlot.park(vehicle);
-        Util.validateSlot(nearestSlot, "Unable to park vehicle at null slot");
 
-        return new Ticket(this, nearestSlot, vehicle);
-    }
-
-    // Method to find the nearest slot by location
-    protected int findLocationOfNearestSlot(){
-        for (int i = 0; i < slots.size(); i++) {
-            if (!slots.get(i).isOccupied()) {
-                return i;
+        for (Slot slot : slots) {
+            if (!slot.isOccupied()) {
+                slot.park(vehicle);
+                return new Ticket(this, slot, vehicle);
             }
         }
 
-        return -1;
+        throw new IllegalStateException("Parking Lot is full");
     }
 
     // Method to unpark the vehicle using the ticket

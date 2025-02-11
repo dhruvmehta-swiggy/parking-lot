@@ -26,23 +26,18 @@ public class Attendant {
     public Ticket park(Vehicle vehicle) {
         Util.validateVehicle(vehicle, "Vehicle cannot be null");
 
-        ParkingLot nearestParkingLot = null;
-        int nearestSlotLocation = Integer.MAX_VALUE;
-
+        Ticket ticket;
         // Find location of the nearest parking slot in the parking lots
         for (ParkingLot parkingLot : parkingLots) {
-            int temp = parkingLot.findLocationOfNearestSlot();
-            if (temp < nearestSlotLocation) {
-                nearestParkingLot = parkingLot;
-                nearestSlotLocation = temp;
+            try {
+                ticket = parkingLot.park(vehicle);
+                return ticket;
+            } catch (IllegalStateException e) {
+                // Continue to the next parking lot
             }
         }
 
-        if (nearestParkingLot == null) {
-            throw new IllegalStateException("All parking lots are full");
-        }
-
-        return nearestParkingLot.park(vehicle, nearestSlotLocation);
+        throw new IllegalStateException("All parking lots are full");
     }
 
     // Method to unpark a vehicle from the parking lot using the ticket

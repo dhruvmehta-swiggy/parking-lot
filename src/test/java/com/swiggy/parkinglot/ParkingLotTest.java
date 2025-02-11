@@ -77,6 +77,48 @@ public class ParkingLotTest {
         assertEquals(2, parkingLot.countVehiclesWithColour(VehicleColor.BLACK));
     }
 
+    // Test to check park method when parking lot is full
+    @Test
+    public void testPark_WhenFullParkingLot_ThrowIllegalStateException() {
+        Attendant attendant = new Attendant();
+        ParkingLot parkingLot = new ParkingLot(1);
+        attendant.assign(parkingLot);
+
+        Vehicle vehicle1 = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
+        attendant.park(vehicle1);
+
+        Vehicle vehicle2 = new Vehicle("KA-01-HH-1235", VehicleColor.BLACK, VehicleType.CAR);
+        assertThrows(IllegalStateException.class, () -> attendant.park(vehicle2));
+    }
+
+    // Test to check park method when parking lot is empty
+    @Test
+    public void testPark_WhenEmptyParkingLot_ThenNewTicket() {
+        Attendant attendant = new Attendant();
+        ParkingLot parkingLot = new ParkingLot(2);
+        attendant.assign(parkingLot);
+
+        Vehicle vehicle = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
+        Ticket ticket = attendant.park(vehicle);
+
+        assertNotNull(ticket);
+    }
+
+    // Test to check park method when two empty parking lots
+    @Test
+    public void testPark_WhenTwoEmptyParkingLots_ThenNewTicket() {
+        Attendant attendant = new Attendant();
+        ParkingLot parkingLot1 = new ParkingLot(2);
+        ParkingLot parkingLot2 = new ParkingLot(2);
+        attendant.assign(parkingLot1);
+        attendant.assign(parkingLot2);
+
+        Vehicle vehicle = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
+        Ticket ticket = attendant.park(vehicle);
+
+        assertNotNull(ticket);
+    }
+
     // Test to check park method when vehicle is parked
     @Test
     public void testUnpark_WhenValidTicket_ThenDoestNotThrowException() {
