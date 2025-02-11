@@ -11,6 +11,7 @@ public class ParkingLotOwner extends Attendant {
 
     // Constructor
     public ParkingLotOwner() {
+        super();
         parkingLots = new ArrayList<>();
     }
 
@@ -18,6 +19,7 @@ public class ParkingLotOwner extends Attendant {
     public void addParkingLot(ParkingLot parkingLot) {
         Util.validateParkingLot(parkingLot, "Parking Lot cannot be null");
         parkingLots.add(parkingLot);
+        super.assign(parkingLot);
     }
 
     // Method to assign attendants to all parking lots

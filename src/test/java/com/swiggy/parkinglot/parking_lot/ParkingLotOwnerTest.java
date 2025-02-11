@@ -1,10 +1,13 @@
 package com.swiggy.parkinglot.parking_lot;
 
 import com.swiggy.parkinglot.Attendant;
+import com.swiggy.parkinglot.Ticket;
+import com.swiggy.parkinglot.vehicle.Vehicle;
+import com.swiggy.parkinglot.vehicle.VehicleColor;
+import com.swiggy.parkinglot.vehicle.VehicleType;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotOwnerTest {
 
@@ -60,5 +63,29 @@ public class ParkingLotOwnerTest {
         parkingLotOwner.addParkingLot(parkingLot4);
         Attendant attendant = new Attendant();
         assertDoesNotThrow(() -> parkingLotOwner.assignAttendant(attendant));
+    }
+
+    // Test to check park method when one parking lot
+    @Test
+    public void testPark_WhenOneParkingLot_ThenNewTicket() {
+        ParkingLotOwner owner = new ParkingLotOwner();
+        ParkingLot parkingLot = new ParkingLot(10);
+        owner.addParkingLot(parkingLot);
+        Vehicle car = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
+
+        Ticket ticket = owner.park(car);
+        assertNotNull(ticket);
+    }
+
+    // Test to check unpark method when valid ticket
+    @Test
+    public void testUnpark_WhenValidTicket_ThenNoException() {
+        ParkingLotOwner owner = new ParkingLotOwner();
+        ParkingLot parkingLot = new ParkingLot(10);
+        owner.addParkingLot(parkingLot);
+        Vehicle car = new Vehicle("KA-01-HH-1234", VehicleColor.WHITE, VehicleType.CAR);
+
+        Ticket ticket = owner.park(car);
+        assertDoesNotThrow(() -> owner.unpark(ticket));
     }
 }
