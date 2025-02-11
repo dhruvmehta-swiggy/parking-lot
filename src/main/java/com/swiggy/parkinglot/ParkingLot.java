@@ -10,6 +10,7 @@ public class ParkingLot {
 
     // List of slots in the parking lot
     private final List<Slot> slots;
+    private final List<Attendant> attendants;
 
     // Constructor
     public ParkingLot(int size) {
@@ -18,9 +19,16 @@ public class ParkingLot {
         }
 
         slots = new ArrayList<>(size);
+        attendants = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             slots.add(new Slot());
         }
+    }
+
+    // Method to assign attendants
+    public void assignAttendant(Attendant attendant) {
+        Util.validateAttendant(attendant, "Attendant cannot be null");
+        attendants.add(attendant);
     }
 
     // Method to park the vehicle at a given location

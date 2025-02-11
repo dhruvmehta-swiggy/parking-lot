@@ -28,6 +28,28 @@ public class ParkingLotTest {
         assertThrows(IllegalArgumentException.class, () -> new ParkingLot(-3));
     }
 
+    // Test to check assignAttendant method when attendant is valid
+    @Test
+    public void testAssignAttendant_WhenOneAttendant_ThenAssign() {
+        Attendant attendant = new Attendant();
+        ParkingLot parkingLot = new ParkingLot(2);
+
+        assertDoesNotThrow(() -> parkingLot.assignAttendant(attendant));
+    }
+
+    // Test to check assignAttendant method when three attendants are assigned
+    @Test
+    public void testAssignAttendant_WhenThreeAttendants_ThenAssign() {
+        Attendant attendant1 = new Attendant();
+        Attendant attendant2 = new Attendant();
+        Attendant attendant3 = new Attendant();
+        ParkingLot parkingLot = new ParkingLot(2);
+
+        assertDoesNotThrow(() -> parkingLot.assignAttendant(attendant1));
+        assertDoesNotThrow(() -> parkingLot.assignAttendant(attendant2));
+        assertDoesNotThrow(() -> parkingLot.assignAttendant(attendant3));
+    }
+
     // Test to check countVehiclesWithColour method when no vehicle is parked
     @Test
     public void testCountVehiclesWithColour_WhenNoVehicleParked_ThenCountIs0() {
