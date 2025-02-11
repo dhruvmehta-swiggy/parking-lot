@@ -48,4 +48,10 @@ public class UtilTest {
     public void testValidateTicket_WhenTicketIsNull_ThrowIllegalArgumentException() {
         assertThrows(InvalidTicketException.class, () -> Util.validateTicket(null, "Ticket cannot be null"));
     }
+
+    // Test to check validateAttendant method when attendant is null
+    @Test
+    public void testValidateAttendant_WhenAttendantIsNull_ThrowIllegalArgumentException() {
+        assertThrows(InvalidAttendantException.class, () -> Util.validateAttendant(null, "Attendant cannot be null"));
+    }
 }

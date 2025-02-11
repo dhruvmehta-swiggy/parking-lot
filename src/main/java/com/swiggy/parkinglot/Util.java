@@ -47,4 +47,10 @@ public class Util {
             throw new InvalidTicketException(message);
         }
     }
+
+    public static void validateAttendant(Attendant attendant, String message) {
+        if (attendant == null) {
+            throw new InvalidAttendantException(message);
+        }
+    }
 }
